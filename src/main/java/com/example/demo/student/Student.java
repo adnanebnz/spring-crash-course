@@ -1,8 +1,22 @@
 package com.example.demo.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity   // TO MAP THIS CLASS TO A TABLE IN THE DATABASE
+@Table   // TO MAP THIS CLASS TO A TABLE IN THE DATABASE
 public class Student {
+    @Id // TO TELL JPA THAT THIS IS THE PRIMARY KEY
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1 // increment by 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
     private Long id;
     private String name;
     private String email;
